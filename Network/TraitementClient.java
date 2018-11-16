@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -6,9 +5,8 @@ import java.net.InetSocketAddress;
 import java.text.DateFormat;
 import java.util.Date;
 import java.text.*;
-
-
- public class TraitementClient implements Runnable{
+import java.io.*;
+ public class TraitementClient implements Runnable {
      private Socket clientSock;
      private IOCommandes obj;
      private String texte;
@@ -31,45 +29,21 @@ import java.text.*;
               try {
                 InetSocketAddress remote = (InetSocketAddress)clientSock.getRemoteSocketAddress();
                 obj = new IOCommandes(clientSock);
-                // base = new Bdd();
+                // instantiate the Bot
+                Bot bot = new Bot();
                 String compare = ">";
                 obj.ecrireReseau("Bienvenue je suis votre Bot. On m'appelle R0B0TW3B");
-                texte = obj.lireReseau();
+                texte = obj.lireReseau(); // lire ce qu'ecrit l'utilisateur
                   while(!texte.equals("quit")){
-                  // if(texte.startsWith("login<")) {
                     obj.ecrireEcran(texte);
-                    texte = obj.lireReseau();
-                    //ne pas oublier de faire la verification complete de la saisie des chevrons
-                    // String login_texte = texte.substring(texte.indexOf('<')+1, texte.indexOf('>'));
-                    // obj.ecrireReseau("login_texte avant for : "+base.getUsers(1));
-                    // obj.ecrireReseau("login_texte avant for : "+base.getUsers(2));
-                    // obj.ecrireReseau("login_texte avant for : "+base.getUsers(3));
-                      // for (int i = 1;i<=base.getCount() ;i++ ) {
-                        // obj.ecrireReseau("login_texte adns for "+base.getUsers(i));
-                        // obj.ecrireReseau(Integer.toString(i));
-                        // obj.ecrireReseau("voici "+base.getUsers(i));
-                        // if(login_texte.equals(base.getUsers(i))){
-                        //   obj.ecrireReseau("Bienvenue " + base.getUsers(i));
-                        // }else{
-                        //   obj.ecrireReseau("Utilisateur inconnu");
-                        //   }
-                        // }
-                // }else{
-                //   obj.ecrireReseau("Le substring : "+texte.substring(texte.length()-1));
-                //   obj.ecrireReseau("Tapez login<prenom> sans les chevrons, suivi de votre login");
-                //   texte = obj.lireReseau();
-                // }
-
-              /*  obj.ecrireEcran("Client: " + texte);
-                obj.ecrireReseau("Vous avez ecrit: "+ texte);
-                String log = "";
-                 log += "Adresse IP : " + remote.getAddress().getHostAddress() +" ";
-                 log += "-  Date et heure : " + ft.format(dNow) + " ";
-                 log += "\t***\t Message : " + texte + "\n";
-                 obj.ecrireLog(log);
-                 //obj.fermeLog();
-                 */
-
+                    String output = String.format("%s",  texte);   //formatter l'input de l'utilisateur pour le mettre dans des guillements                  // obj.ecrireEcran(
+                    try{
+                      bot.urlReader(output); // Lire l'url
+                    }catch (Exception e) { // ou si c'est pas un bon url, renvoyer l'erreur à l'utilisateur
+                      obj.ecrireReseau(e.toString());
+                        e.printStackTrace();
+                    }
+                    texte = obj.lireReseau();//réecouter l'utilisateur
 
                 if (texte.equals("quit"))
                   obj.stopConnexion();

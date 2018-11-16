@@ -50,7 +50,9 @@ public class IOCommandes{
   public void ecrireReseau(String texte){
     ecritureReseau.println(texte);
   }
-
+  public void ecrireIntInReseau(Integer texte){
+    ecritureReseau.println(texte);
+  }
   public String lireReseau() throws IOException{
 
       return lectureReseau.readLine();

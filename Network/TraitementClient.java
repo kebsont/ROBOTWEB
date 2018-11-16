@@ -33,14 +33,14 @@ import java.text.*;
                 obj = new IOCommandes(clientSock);
                 // base = new Bdd();
                 String compare = ">";
-                obj.ecrireReseau("Bienvenue sur le Serveur de Chat, veuillez vous identifier en tapant login<prenom> sans les chevrons, suivi de votre login");
+                obj.ecrireReseau("Bienvenue je suis votre Bot. On m'appelle R0B0TW3B");
                 texte = obj.lireReseau();
                   while(!texte.equals("quit")){
-                  if(texte.startsWith("login<")) {
-                    //a voir pk je suis obligé de passer par getUser pour mon for
-                    // obj.ecrireReseau("il ya lignes: "+base.getCount());
+                  // if(texte.startsWith("login<")) {
+                    obj.ecrireEcran(texte);
+                    texte = obj.lireReseau();
                     //ne pas oublier de faire la verification complete de la saisie des chevrons
-                    String login_texte = texte.substring(texte.indexOf('<')+1, texte.indexOf('>'));
+                    // String login_texte = texte.substring(texte.indexOf('<')+1, texte.indexOf('>'));
                     // obj.ecrireReseau("login_texte avant for : "+base.getUsers(1));
                     // obj.ecrireReseau("login_texte avant for : "+base.getUsers(2));
                     // obj.ecrireReseau("login_texte avant for : "+base.getUsers(3));
@@ -54,11 +54,11 @@ import java.text.*;
                         //   obj.ecrireReseau("Utilisateur inconnu");
                         //   }
                         // }
-                }else{
-                  obj.ecrireReseau("Le substring : "+texte.substring(texte.length()-1));
-                  obj.ecrireReseau("Tapez login<prenom> sans les chevrons, suivi de votre login");
-                  texte = obj.lireReseau();
-                }
+                // }else{
+                //   obj.ecrireReseau("Le substring : "+texte.substring(texte.length()-1));
+                //   obj.ecrireReseau("Tapez login<prenom> sans les chevrons, suivi de votre login");
+                //   texte = obj.lireReseau();
+                // }
 
               /*  obj.ecrireEcran("Client: " + texte);
                 obj.ecrireReseau("Vous avez ecrit: "+ texte);

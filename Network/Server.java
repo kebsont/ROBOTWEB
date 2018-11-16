@@ -11,7 +11,7 @@ public class Server {
   private Socket ClientSock;
   private IOCommandes obj;
   private String texte;
-  private String host = "192.168.1.10";
+  private String host = "192.168.200.91";
   private int port = 1445;
   private static final int MAXCONN = 2;
   private boolean enMarche = true;

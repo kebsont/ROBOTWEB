@@ -38,10 +38,10 @@ class Bot {
                 }
             }
 
-            for(int i=0; i<listOfLink.size(); i++){ //Affichage de la liste des liens
+            // for(int i=0; i<listOfLink.size(); i++){ //Affichage de la liste des liens
                 // System.out.print(i + ": ");
                 // System.out.println(listOfLink.get(i));
-            }
+            // }
 
             in.close();
             return listOfLink;

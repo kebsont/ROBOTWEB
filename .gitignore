@@ -1,1 +1,4 @@
 *.class
+venv/
+web/robotweb/robotweb/*.pyc
+web/robotweb/robotweb/robot/*.pyc

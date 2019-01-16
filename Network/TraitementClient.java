@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.text.*;
 import java.io.*;
+import java.util.ArrayList;
+
  public class TraitementClient implements Runnable {
      private Socket clientSock;
      private IOCommandes obj;
@@ -38,7 +40,13 @@ import java.io.*;
                     obj.ecrireEcran(texte);
                     String output = String.format("%s",  texte);   //formatter l'input de l'utilisateur pour le mettre dans des guillements                  // obj.ecrireEcran(
                     try{
-                      bot.urlReader(output); // Lire l'url
+                        ArrayList<String> res = bot.urlReader(output);
+                        obj.ecrireReseau("Mon cher Moumouss, \nVoici les " + res.size() + " liens que tu m'as demandé: \nBien à toi.");
+                        for(int i=0; i<res.size(); i++){
+                            obj.ecrireReseau(i + ": " + res.get(i));
+                            obj.ecrireEcran(i + ": " + res.get(i));
+                        }
+                        // e.printStackTrace();
                     }catch (Exception e) { // ou si c'est pas un bon url, renvoyer l'erreur à l'utilisateur
                       obj.ecrireReseau(e.toString());
                         e.printStackTrace();

@@ -5,23 +5,28 @@ import java.util.regex.Matcher;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-class Bot {
-    public int urlReader(String url) throws Exception { //Affiche les liens de l'URL
+public class Bot {
+
+    public ArrayList<String> urlReader(String url) throws Exception { //Affiche les liens de l'URL
         URL adr = new URL(url);
         int res = 0;
         ArrayList<String> listOfLink = getListLink(adr);
+        ArrayList<String> listRes = new ArrayList<String>();
+
+        // return getListLink(adr);
         for(int i=0; i<listOfLink.size(); i++){ //test des liens
             String linkOk = checkLink(listOfLink.get(i));
-            System.out.print(i + ": ");
+            // System.out.print(i + ": ");
             if((linkOk != "0") && (linkOk != "1")){
                 res++;
-                System.out.println(linkOk);
+                listRes.add(linkOk);
+                // System.out.println(linkOk);
             }else{
-                System.out.println("    x - " + linkOk);
+                // System.out.println("    x - " + linkOk);
             }
         }
         System.out.println();
-        return (res);
+        return (listRes);
     }
 
     private ArrayList<String> getListLink(URL url){

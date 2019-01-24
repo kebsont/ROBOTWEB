@@ -115,4 +115,9 @@ public class Bot {
             return "";
         }
     }
+
+    // private String getDomain(String url){
+    //     URL adr = new URL(url);
+    //     return adr.getHost();
+    // }
 }

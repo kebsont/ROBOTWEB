@@ -20,6 +20,7 @@ public class Bot {
             if((linkOk != "0") && (linkOk != "1")){
                 fullLinks.add(linkOk);
                 listRes.add(linkOk);
+                // System.out.println(linkOk);
                 // it++;
             }else{
 
@@ -36,7 +37,8 @@ public class Bot {
             }
         }
         System.out.println();
-        return (listRes);
+        ArrayList<String> listDom = getDomain(listRes);
+        return (listDom);
     }
 
     private ArrayList<String> getListLink(URL url){
@@ -116,8 +118,60 @@ public class Bot {
         }
     }
 
-    // private String getDomain(String url){
-    //     URL adr = new URL(url);
-    //     return adr.getHost();
-    // }
+    private ArrayList<String> getDomain(ArrayList<String> lisUrl){
+        ArrayList<String> domainList = new ArrayList<String>();
+        ArrayList<Integer> score = new ArrayList<Integer>();
+        for(int i=0; i<lisUrl.size(); i++){
+            // System.out.println(lisUrl.size());
+            URL adr;
+            try{
+                adr = new URL(lisUrl.get(i));
+                //more code goes here
+                String domain =  adr.getHost();
+                String[] masterDom = domain.split("\\.");
+                domain = masterDom[masterDom.length-2] + "." + masterDom[masterDom.length-1];
+                // System.out.println(masterDom[masterDom.length-2] + "." + masterDom[masterDom.length-1]);
+                boolean isIn = false;
+                for(int j=0; j<domainList.size(); j++){
+                    if(domainList.get(j).equals(domain)){
+                        score.set(j, score.get(j)+1);
+                        isIn = true;
+                        break;
+                    }
+                }
+                if(!isIn){
+                    domainList.add(domain);
+                    score.add(1);
+                }
+            }catch(MalformedURLException ex){
+                //do exception handling here
+            }
+
+        }
+        ArrayList<String> classedList = classDomain(domainList, score);
+        return classedList;
+    }
+
+    private ArrayList<String> classDomain(ArrayList<String> listD, ArrayList<Integer> score){
+        ArrayList<String> classed = new ArrayList<String>();
+        boolean end = false;
+        while(!end){
+            end = true;
+            for(int i=1; i<score.size(); i++){
+                if(score.get(i)>score.get(i-1)){
+                    end = false;
+                    int tmp = score.get(i);
+                    String tmpS = listD.get(i);
+                    score.set(i, score.get(i-1));
+                    listD.set(i, listD.get(i-1));
+                    score.set(i-1, tmp);
+                    listD.set(i-1, tmpS);
+                }
+            }
+        }
+        // for(int i=1; i<score.size(); i++){
+        //     System.out.println(score.get(i));
+        // }
+        return listD;
+    }
 }

@@ -25,7 +25,7 @@ SECRET_KEY = 'av-e(3hpz-23piy%$)n(ls+vgp1$gx7w@@sn_=xs2fx$+23vof'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.20.10.3', '127.0.0.1']
 
 
 # Application definition

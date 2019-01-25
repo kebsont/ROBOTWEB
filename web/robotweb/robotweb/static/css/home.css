@@ -9,10 +9,26 @@
  -webkit-box-shadow:none;
  border-color:#cccccc;
 }
+.logo{
+  margin-top: 30px;
+}
 .form-control{width:20%}
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #2D3B82 !important;
+}
 .first{
-  background-color: red;
-  margin: auto;
+  //red
+  background-color: white;
+  position: relative;
+  margin-top: -50px;
+  margin-left: 250px;
+  /* padding-top: 50px; */
+  /* margin: auto; */
   width: 90%;
   height: 50%;
+}
+footer{
+  text-align: center;
+  margin-left: -260px;
+  margin-top: 90px;
 }
